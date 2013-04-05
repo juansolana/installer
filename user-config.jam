@@ -1,26 +1,2 @@
-modules.poke : ZLIB_SOURCE : e:\\installer\\zlib ;
-modules.poke : BZIP2_SOURCE : e:\\installer\\bzip2 ;
-
-# These don't seem to work for x64 builds and ICU support only allows
-# runtime-link-dynamic anyway; we're not sure how to adjust for that
-# yet.
-# modules.poke : ICU_PATH : c:\\work\\icu ;
-# modules.poke : ICU_LINK : /LIBPATH:c:\\work\\icu\\lib ;
-
-# Map toolsets to SDK versions
-sdk-8.0express = 6.0 ;
-sdk-9.0express = 6.1 ;
-sdk-10.0express = 7.1 ;
-
-for version in 10.0express 9.0express 8.0express 
-{
-    local sdk = "c:/Program Files/Microsoft SDKs/Windows/v"$(sdk-$(version)) ;
-    # If we need to use VS express, uncomment this line
-    # using msvc : $(version) : : <sdk>$(sdk) ;
-}
-
-# This works for the stock msvc release
-using msvc ;
-
-using python : 2.7 : c:/python27/python ;
-# using mpi ;
+import toolset : using ;
+using python : 2.7 : "C:/Python27" : "C:/Python27/include" : "C:/Python27/libs" ;
